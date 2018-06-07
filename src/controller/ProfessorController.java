@@ -29,7 +29,7 @@ public class ProfessorController {
            String sql = "INSERT INTO professor (nome, titulacao) VALUES (?,?)";
            String nome = professor.getNome();
            String titulacao = professor.getTitulacao();
-           PreparedStatement stmt = (PreparedStatement)connection.prepareStatement(sql);
+           PreparedStatement stmt = connection.prepareStatement(sql);
            stmt.setString(1, nome);
            stmt.setString(2,titulacao);
            stmt.execute();

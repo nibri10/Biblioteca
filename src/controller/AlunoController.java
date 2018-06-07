@@ -37,7 +37,7 @@ public class AlunoController {
         try {
             String nome = aluno.getNome();
             String sobrenome = aluno.getSobrenome();
-            PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(INSERT);
+            PreparedStatement stmt = connection.prepareStatement(INSERT);
             stmt.setString(1, nome);
             stmt.setString(2, sobrenome);
             stmt.execute();

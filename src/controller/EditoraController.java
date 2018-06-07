@@ -36,7 +36,7 @@ public class EditoraController {
         try {
             String nome = editora.getNome();
             String cidade = editora.getCidade();
-            PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(INSERT);
+            PreparedStatement stmt = connection.prepareStatement(INSERT);
             stmt.setString(1, nome);
             stmt.setString(2, cidade);
             stmt.execute();

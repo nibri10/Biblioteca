@@ -32,7 +32,7 @@ public class AutorContoller {
         try {
             String nome = autor.getNome();
             String sobrenome = autor.getSobrenome();
-            PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(Insert);
+            PreparedStatement stmt = connection.prepareStatement(Insert);
             stmt.setString(1, nome);
             stmt.setString(2, sobrenome);
             stmt.execute();

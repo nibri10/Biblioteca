@@ -38,7 +38,7 @@ public class LivroController {
             String isbn = livro.getISBN();
             String editora = livro.getEditora();
             int quantidade = livro.getQuantidade(); 
-            PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(INSERT);
+            PreparedStatement stmt = connection.prepareStatement(INSERT);
             stmt.setString(1, titulo);
             stmt.setString(2, autor);
             stmt.setString(3, editora);
