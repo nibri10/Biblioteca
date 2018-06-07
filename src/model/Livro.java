@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.Objects;
+
 /**
  *
  * @author Nicolas
@@ -79,6 +81,51 @@ public class Livro {
     @Override
     public String toString() {
         return "Livro{" + "titulo=" + titulo + ", autor=" + autor + ", ISBN=" + ISBN + ", quantidade=" + quantidade + ", editora=" + editora + ", Codigo=" + Codigo + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.titulo);
+        hash = 29 * hash + Objects.hashCode(this.autor);
+        hash = 29 * hash + Objects.hashCode(this.ISBN);
+        hash = 29 * hash + this.quantidade;
+        hash = 29 * hash + Objects.hashCode(this.editora);
+        hash = 29 * hash + this.Codigo;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Livro other = (Livro) obj;
+        if (this.quantidade != other.quantidade) {
+            return false;
+        }
+        if (this.Codigo != other.Codigo) {
+            return false;
+        }
+        if (!Objects.equals(this.titulo, other.titulo)) {
+            return false;
+        }
+        if (!Objects.equals(this.autor, other.autor)) {
+            return false;
+        }
+        if (!Objects.equals(this.ISBN, other.ISBN)) {
+            return false;
+        }
+        if (!Objects.equals(this.editora, other.editora)) {
+            return false;
+        }
+        return true;
     }
 
     

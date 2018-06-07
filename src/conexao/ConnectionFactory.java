@@ -16,9 +16,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException; 
 // classe para tratamento de exceções 
 public class ConnectionFactory {
+       private final String driver = "jdbc:mysql://localhost/emprestimo";
+       private final String user = "root";
+       private final String password = "1234";
+    
      public Connection getConnection() {
 		 try {
-			return DriverManager.getConnection("jdbc:mysql://localhost/emprestimo","root","1234");
+			return DriverManager.getConnection(driver,user,password);
 		 }         
 		 catch(SQLException excecao) {
 			throw new RuntimeException(excecao);

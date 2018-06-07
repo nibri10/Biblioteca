@@ -5,11 +5,14 @@
  */
 package model;
 
+import java.util.Objects;
+
 /**
  *
  * @author Nicolas
  */
 public class Autor {
+    private int codigo;
     private String nome;
     private String sobrenome;
 
@@ -38,10 +41,54 @@ public class Autor {
         this.sobrenome = sobrenome;
     }
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
     @Override
     public String toString() {
-        return "Autor{" + "nome=" + nome + ", sobrenome=" + sobrenome + '}';
+        return "Autor{" + "codigo=" + codigo + ", nome=" + nome + ", sobrenome=" + sobrenome + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 59 * hash + this.codigo;
+        hash = 59 * hash + Objects.hashCode(this.nome);
+        hash = 59 * hash + Objects.hashCode(this.sobrenome);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Autor other = (Autor) obj;
+        if (this.codigo != other.codigo) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.sobrenome, other.sobrenome)) {
+            return false;
+        }
+        return true;
     }
     
+    
+
+   
     
 }

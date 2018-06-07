@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.Objects;
+
 
 
 /**
@@ -15,6 +17,7 @@ public class Aluno {
         
    private String nome;
    private String sobrenome;
+   private int codigo;
   
 
     public Aluno(String nome, String sobrenome) {
@@ -41,12 +44,55 @@ public class Aluno {
     public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;
     }
-    
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
 
     @Override
     public String toString() {
-        return "Aluno{" + "nome=" + nome + ", sobrenome=" + sobrenome + '}';
+        return "Aluno{" + "nome=" + nome + ", sobrenome=" + sobrenome + ", codigo=" + codigo + '}';
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.nome);
+        hash = 97 * hash + Objects.hashCode(this.sobrenome);
+        hash = 97 * hash + this.codigo;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Aluno other = (Aluno) obj;
+        if (this.codigo != other.codigo) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.sobrenome, other.sobrenome)) {
+            return false;
+        }
+        return true;
+    }
+    
+
+    
 
    
    
