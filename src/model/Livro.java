@@ -13,21 +13,22 @@ import java.util.Objects;
  */
 public class Livro {
     private String titulo;
-    private String autor;
+    private int autor;
     private String ISBN;
     private int quantidade;
-    private String editora;
+    private int editora;
     private int Codigo;
     
     public Livro(){
     }
 
-    public Livro(String titulo, String autor, String ISBN, int quantidade, String editora) {
+    public Livro(String titulo, int autor, String ISBN, int quantidade, int editora, int Codigo) {
         this.titulo = titulo;
         this.autor = autor;
         this.ISBN = ISBN;
         this.quantidade = quantidade;
         this.editora = editora;
+        this.Codigo = Codigo;
     }
 
     public String getTitulo() {
@@ -38,11 +39,11 @@ public class Livro {
         this.titulo = titulo;
     }
 
-    public String getAutor() {
+    public int getAutor() {
         return autor;
     }
 
-    public void setAutor(String autor) {
+    public void setAutor(int autor) {
         this.autor = autor;
     }
 
@@ -62,11 +63,11 @@ public class Livro {
         this.quantidade = quantidade;
     }
 
-    public String getEditora() {
+    public int getEditora() {
         return editora;
     }
 
-    public void setEditora(String editora) {
+    public void setEditora(int editora) {
         this.editora = editora;
     }
 
@@ -78,55 +79,9 @@ public class Livro {
         this.Codigo = Codigo;
     }
 
-    @Override
-    public String toString() {
-        return "Livro{" + "titulo=" + titulo + ", autor=" + autor + ", ISBN=" + ISBN + ", quantidade=" + quantidade + ", editora=" + editora + ", Codigo=" + Codigo + '}';
+    
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.titulo);
-        hash = 29 * hash + Objects.hashCode(this.autor);
-        hash = 29 * hash + Objects.hashCode(this.ISBN);
-        hash = 29 * hash + this.quantidade;
-        hash = 29 * hash + Objects.hashCode(this.editora);
-        hash = 29 * hash + this.Codigo;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Livro other = (Livro) obj;
-        if (this.quantidade != other.quantidade) {
-            return false;
-        }
-        if (this.Codigo != other.Codigo) {
-            return false;
-        }
-        if (!Objects.equals(this.titulo, other.titulo)) {
-            return false;
-        }
-        if (!Objects.equals(this.autor, other.autor)) {
-            return false;
-        }
-        if (!Objects.equals(this.ISBN, other.ISBN)) {
-            return false;
-        }
-        if (!Objects.equals(this.editora, other.editora)) {
-            return false;
-        }
-        return true;
-    }
 
     
     
@@ -138,4 +93,4 @@ public class Livro {
     
     
     
-}
+

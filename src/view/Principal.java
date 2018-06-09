@@ -8,11 +8,13 @@ package view;
 import controller.AlunoController;
 import controller.ComboPouplation;
 import controller.EditoraController;
+import controller.LivroController;
 import controller.ProfessorController;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import model.Aluno;
 import model.Editora;
+import model.Livro;
 import model.Professor;
 
 /**
@@ -26,16 +28,29 @@ public  class Principal extends javax.swing.JFrame {
      */ 
     public Principal() {
         initComponents();
-        comboE();
+        comboEditora();
+        comboAutor();
     }
     
-    public void comboE(){
-        ComboPouplation a = new ComboPouplation();
-        HashMap<String,Integer> map = a.populateCombo();
+    public void comboEditora(){
+        
+        ComboPouplation Editora = new ComboPouplation();
+        HashMap<String,Integer> map = Editora.populateCombo();
         for(String s :map.keySet()){
          combo.addItem(s);
         }
         
+        
+    
+    }
+    
+    public void comboAutor(){
+        ComboPouplation Autor = new ComboPouplation();
+        HashMap<String,Integer> mapAutor = Autor.populateComboAutor();
+        for(String a : mapAutor.keySet()){
+            comboAutor.addItem(a);
+        
+        }
     
     }
     
@@ -48,6 +63,7 @@ public  class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        BtnAutor1 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
@@ -70,7 +86,19 @@ public  class Principal extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         BtnEditora = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
+        CadastrarLivros = new javax.swing.JButton();
+        nomeLivro = new javax.swing.JTextField();
+        ISBNLivro = new javax.swing.JTextField();
+        QuantidadeLivro = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         combo = new javax.swing.JComboBox<>();
+        comboAutor = new javax.swing.JComboBox<>();
+        editoraLabel = new javax.swing.JLabel();
+        AutorLabel = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         BtnAutor = new javax.swing.JButton();
         AutorSobrenome = new javax.swing.JTextField();
@@ -94,6 +122,8 @@ public  class Principal extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+
+        BtnAutor1.setText("Cadastrar");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -247,21 +277,104 @@ public  class Principal extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Editora", jPanel6);
 
+        CadastrarLivros.setText("Cadastrar");
+        CadastrarLivros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CadastrarLivrosMouseClicked(evt);
+            }
+        });
+
+        jLabel9.setText(" Livro");
+
+        jLabel10.setText("Editora");
+
+        jLabel11.setText("Autor");
+
+        jLabel12.setText("ISBN");
+
+        jLabel13.setText("Quantidade");
+
+        combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboActionPerformed(evt);
+            }
+        });
+
+        comboAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAutorActionPerformed(evt);
+            }
+        });
+
+        AutorLabel.setToolTipText("");
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(174, Short.MAX_VALUE)
-                .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(42, 42, 42)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel13)
+                        .addComponent(jLabel12)
+                        .addComponent(jLabel11)
+                        .addComponent(jLabel10))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CadastrarLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(editoraLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nomeLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(comboAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(AutorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ISBNLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(QuantidadeLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(18, Short.MAX_VALUE))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(347, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nomeLivro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editoraLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(comboAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AutorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(QuantidadeLivro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel10)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(ISBNLivro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel13)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+                .addComponent(CadastrarLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jTabbedPane2.addTab("Livros", jPanel7);
@@ -548,11 +661,41 @@ public  class Principal extends javax.swing.JFrame {
         CadEdit.setCidade(EditoraCidade.getText());
         EditoraController AddEditora = new EditoraController();
         AddEditora.AddEditora(CadEdit);
+        
     }//GEN-LAST:event_BtnEditoraMouseClicked
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
        System.exit(0);
     }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void CadastrarLivrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CadastrarLivrosMouseClicked
+       Livro newLivro = new Livro();
+       if(nomeLivro.getText().isEmpty()|| ISBNLivro.getText().isEmpty() || QuantidadeLivro.getText().isEmpty()){
+           JOptionPane.showMessageDialog(null, "Possui Campos Vazios");
+       }
+       int editora = Integer.parseInt(editoraLabel.getText());
+       int autor =Integer.parseInt(AutorLabel.getText());
+       newLivro.setTitulo(nomeLivro.getText());
+       newLivro.setEditora(editora);
+       newLivro.setAutor(autor);
+       newLivro.setISBN(ISBNLivro.getText());
+       newLivro.setQuantidade(Integer.parseInt(QuantidadeLivro.getText()));
+       LivroController AddLivro = new LivroController();
+       AddLivro.addLivro(newLivro);
+       
+    }//GEN-LAST:event_CadastrarLivrosMouseClicked
+
+    private void comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboActionPerformed
+       ComboPouplation Editora = new ComboPouplation();
+       HashMap<String,Integer> map = Editora.populateCombo();
+       editoraLabel.setText(map.get(combo.getSelectedItem().toString()).toString());
+    }//GEN-LAST:event_comboActionPerformed
+
+    private void comboAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAutorActionPerformed
+       ComboPouplation Autor = new ComboPouplation();
+       HashMap<String,Integer> mapAutor = Autor.populateComboAutor();
+       AutorLabel.setText(mapAutor.get(comboAutor.getSelectedItem().toString()).toString());
+    }//GEN-LAST:event_comboAutorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -595,18 +738,29 @@ public  class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AlunoNome;
     private javax.swing.JTextField AlunoSobrenome;
+    private javax.swing.JLabel AutorLabel;
     private javax.swing.JTextField AutorNome;
     private javax.swing.JTextField AutorSobrenome;
     private javax.swing.JButton BtnAluno;
     private javax.swing.JButton BtnAutor;
+    private javax.swing.JButton BtnAutor1;
     private javax.swing.JButton BtnEditora;
     private javax.swing.JButton BtnProfessor;
+    private javax.swing.JButton CadastrarLivros;
     private javax.swing.JTextField EditoraCidade;
     private javax.swing.JTextField EditoraNome;
+    private javax.swing.JTextField ISBNLivro;
     private javax.swing.JTextField ProfessorNome;
     private javax.swing.JTextField ProfessorTitulacao;
+    private javax.swing.JTextField QuantidadeLivro;
     private javax.swing.JComboBox<String> combo;
+    private javax.swing.JComboBox<String> comboAutor;
+    private javax.swing.JLabel editoraLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -614,6 +768,7 @@ public  class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
@@ -639,5 +794,6 @@ public  class Principal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
+    private javax.swing.JTextField nomeLivro;
     // End of variables declaration//GEN-END:variables
 }

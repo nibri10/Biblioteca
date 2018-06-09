@@ -21,28 +21,28 @@ import model.Livro;
  */
 public class LivroController {
 
-    private Connection connection;
+    private final Connection connection;
 
     public LivroController() {
         this.connection = new ConnectionFactory().getConnection();
     }
-    private final String INSERT="INSERT INTO livro(titulo,autor,isbn,editora,quantidade) VALUES(?,?,?,?,?)";
+    private final String INSERT="INSERT INTO livro(titulo,isbn,quantidade,fk_editora,fk_autor) VALUES(?,?,?,?,?)";
     private final String SELECT="SELECT * FROM PRODUTO";
     private PreparedStatement sql = null;
 
     public void addLivro(Livro livro) {
         try {
             String titulo = livro.getTitulo();
-            String autor = livro.getAutor();
+            int autor = livro.getAutor();
             String isbn = livro.getISBN();
-            String editora = livro.getEditora();
+            int editora = livro.getEditora();
             int quantidade = livro.getQuantidade(); 
-            PreparedStatement stmt = connection.prepareStatement(INSERT);
+            PreparedStatement stmt =  connection.prepareStatement(INSERT);
             stmt.setString(1, titulo);
-            stmt.setString(2, autor);
-            stmt.setString(3, editora);
-            stmt.setString(4, isbn);
-            stmt.setInt(5, quantidade);
+            stmt.setString(2, isbn);
+            stmt.setInt(3,quantidade);
+            stmt.setInt(4,editora);
+            stmt.setInt(5,autor);
             stmt.execute();
             stmt.close();
             connection.close();
