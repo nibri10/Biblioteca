@@ -8,12 +8,14 @@ package view;
 import controller.AlunoController;
 import controller.ComboPouplation;
 import controller.EditoraController;
+import controller.EmprestimoController;
 import controller.LivroController;
 import controller.ProfessorController;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import model.Aluno;
 import model.Editora;
+import model.Emprestimo;
 import model.Livro;
 import model.Professor;
 
@@ -30,6 +32,9 @@ public  class Principal extends javax.swing.JFrame {
         initComponents();
         comboEditora();
         comboAutor();
+        comboProfessor();
+        comboAluno();
+        comboLivro();
     }
     
     public void comboEditora(){
@@ -39,11 +44,7 @@ public  class Principal extends javax.swing.JFrame {
         for(String s :map.keySet()){
          combo.addItem(s);
         }
-        
-        
-    
     }
-    
     public void comboAutor(){
         ComboPouplation Autor = new ComboPouplation();
         HashMap<String,Integer> mapAutor = Autor.populateComboAutor();
@@ -53,6 +54,36 @@ public  class Principal extends javax.swing.JFrame {
         }
     
     }
+     public void comboProfessor(){
+        ComboPouplation professor = new ComboPouplation();
+        HashMap<String,Integer> mapProfessor = professor.populateComboProfessor();
+        for(String p : mapProfessor.keySet()){
+            ComboProfEmp.addItem(p);
+        
+        }
+    
+    }
+
+     public void comboAluno(){
+        ComboPouplation aluno = new ComboPouplation();
+        HashMap<String,Integer> mapAluno = aluno.populateComboAluno();
+        for(String r : mapAluno.keySet()){
+            ComboAlunoEmp.addItem(r);
+        
+        }
+       
+    }
+     
+     public void comboLivro(){
+        ComboPouplation livro = new ComboPouplation();
+        HashMap<String,Integer> mapLivro = livro.populateComboLivro();
+        for(String t : mapLivro.keySet()){
+           ComboLivroEmp.addItem(t);
+        
+        }
+     
+     }
+     
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -120,6 +151,16 @@ public  class Principal extends javax.swing.JFrame {
         jPanel18 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        ComboLivroEmp = new javax.swing.JComboBox<>();
+        ComboAlunoEmp = new javax.swing.JComboBox<>();
+        ComboProfEmp = new javax.swing.JComboBox<>();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        LivroEmprestimoL = new javax.swing.JLabel();
+        AlunoEmprestimoLabel = new javax.swing.JLabel();
+        ProfessorEmprestimoAluno = new javax.swing.JLabel();
+        CadastrarEmprestimo = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
 
@@ -147,7 +188,7 @@ public  class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                         .addComponent(AlunoSobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel4)
@@ -197,7 +238,7 @@ public  class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                         .addComponent(ProfessorTitulacao, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -247,7 +288,7 @@ public  class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                         .addComponent(EditoraCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel8)
@@ -340,7 +381,7 @@ public  class Principal extends javax.swing.JFrame {
                                 .addComponent(AutorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(ISBNLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(QuantidadeLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(18, Short.MAX_VALUE))))
+                        .addContainerGap(20, Short.MAX_VALUE))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -394,7 +435,7 @@ public  class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                         .addComponent(AutorSobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -441,7 +482,7 @@ public  class Principal extends javax.swing.JFrame {
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 537, Short.MAX_VALUE)
+            .addGap(0, 539, Short.MAX_VALUE)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -454,7 +495,7 @@ public  class Principal extends javax.swing.JFrame {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 537, Short.MAX_VALUE)
+            .addGap(0, 539, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -467,7 +508,7 @@ public  class Principal extends javax.swing.JFrame {
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 537, Short.MAX_VALUE)
+            .addGap(0, 539, Short.MAX_VALUE)
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -480,7 +521,7 @@ public  class Principal extends javax.swing.JFrame {
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 537, Short.MAX_VALUE)
+            .addGap(0, 539, Short.MAX_VALUE)
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -493,7 +534,7 @@ public  class Principal extends javax.swing.JFrame {
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 537, Short.MAX_VALUE)
+            .addGap(0, 539, Short.MAX_VALUE)
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -519,7 +560,7 @@ public  class Principal extends javax.swing.JFrame {
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 537, Short.MAX_VALUE)
+            .addGap(0, 539, Short.MAX_VALUE)
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -532,7 +573,7 @@ public  class Principal extends javax.swing.JFrame {
         jPanel16.setLayout(jPanel16Layout);
         jPanel16Layout.setHorizontalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 537, Short.MAX_VALUE)
+            .addGap(0, 539, Short.MAX_VALUE)
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -545,7 +586,7 @@ public  class Principal extends javax.swing.JFrame {
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 537, Short.MAX_VALUE)
+            .addGap(0, 539, Short.MAX_VALUE)
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -558,7 +599,7 @@ public  class Principal extends javax.swing.JFrame {
         jPanel18.setLayout(jPanel18Layout);
         jPanel18Layout.setHorizontalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 537, Short.MAX_VALUE)
+            .addGap(0, 539, Short.MAX_VALUE)
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -571,7 +612,7 @@ public  class Principal extends javax.swing.JFrame {
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 537, Short.MAX_VALUE)
+            .addGap(0, 539, Short.MAX_VALUE)
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -593,15 +634,88 @@ public  class Principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Atualização", jPanel3);
 
+        jLabel14.setText("Livro");
+
+        ComboLivroEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboLivroEmpActionPerformed(evt);
+            }
+        });
+
+        ComboAlunoEmp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0" }));
+        ComboAlunoEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboAlunoEmpActionPerformed(evt);
+            }
+        });
+
+        ComboProfEmp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0" }));
+        ComboProfEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboProfEmpActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setText("Aluno");
+
+        jLabel16.setText("Professor");
+
+        CadastrarEmprestimo.setText("Emprestar");
+        CadastrarEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastrarEmprestimoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 542, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel16))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ComboProfEmp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ComboAlunoEmp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ComboLivroEmp, 0, 355, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LivroEmprestimoL, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AlunoEmprestimoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ProfessorEmprestimoAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(62, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CadastrarEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 453, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(ComboLivroEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LivroEmprestimoL, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ComboAlunoEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(AlunoEmprestimoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel15))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ComboProfEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ProfessorEmprestimoAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
+                .addComponent(CadastrarEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
 
         jTabbedPane1.addTab("Emprestimo", jPanel9);
@@ -697,6 +811,47 @@ public  class Principal extends javax.swing.JFrame {
        AutorLabel.setText(mapAutor.get(comboAutor.getSelectedItem().toString()).toString());
     }//GEN-LAST:event_comboAutorActionPerformed
 
+    private void ComboLivroEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboLivroEmpActionPerformed
+      ComboPouplation Livro = new ComboPouplation();
+      HashMap<String,Integer> map = Livro.populateComboLivro();
+      LivroEmprestimoL.setText(map.get(ComboLivroEmp.getSelectedItem().toString()).toString());
+    }//GEN-LAST:event_ComboLivroEmpActionPerformed
+
+    private void ComboAlunoEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboAlunoEmpActionPerformed
+
+        ComboPouplation Aluno = new ComboPouplation();
+        HashMap<String,Integer> map = Aluno.populateComboAluno();
+        AlunoEmprestimoLabel.setText(map.get(ComboAlunoEmp.getSelectedItem().toString()).toString());
+    }//GEN-LAST:event_ComboAlunoEmpActionPerformed
+
+    private void ComboProfEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboProfEmpActionPerformed
+        ComboPouplation Prof = new ComboPouplation();
+        HashMap<String,Integer> map = Prof.populateComboProfessor();
+        ProfessorEmprestimoAluno.setText(map.get(ComboProfEmp.getSelectedItem().toString()).toString());
+    }//GEN-LAST:event_ComboProfEmpActionPerformed
+
+    private void CadastrarEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarEmprestimoActionPerformed
+        Emprestimo Newemp= new Emprestimo();
+        Newemp.setCodlivroEmprestimo(Integer.parseInt(LivroEmprestimoL.getText()));
+        if(ProfessorEmprestimoAluno.getText().isEmpty() ||ProfessorEmprestimoAluno.getText()== null){
+         Newemp.setCodigoProfesor(Integer.parseInt("0"));
+        }
+        else{
+         Newemp.setCodigoProfesor(Integer.parseInt(ProfessorEmprestimoAluno.getText()));
+        }
+        if(AlunoEmprestimoLabel.getText().isEmpty() || AlunoEmprestimoLabel.getText()== null){
+        Newemp.setCodigoAluno(Integer.parseInt("0"));
+        }
+        else{
+            Newemp.setCodigoAluno(Integer.parseInt(AlunoEmprestimoLabel.getText()));
+        }
+        
+        Newemp.setVerifica(1);
+        EmprestimoController AddEmprestimo = new EmprestimoController();
+        AddEmprestimo.AddEmprestimo(Newemp);
+        
+    }//GEN-LAST:event_CadastrarEmprestimoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -736,6 +891,7 @@ public  class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AlunoEmprestimoLabel;
     private javax.swing.JTextField AlunoNome;
     private javax.swing.JTextField AlunoSobrenome;
     private javax.swing.JLabel AutorLabel;
@@ -746,10 +902,16 @@ public  class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BtnAutor1;
     private javax.swing.JButton BtnEditora;
     private javax.swing.JButton BtnProfessor;
+    private javax.swing.JButton CadastrarEmprestimo;
     private javax.swing.JButton CadastrarLivros;
+    private javax.swing.JComboBox<String> ComboAlunoEmp;
+    private javax.swing.JComboBox<String> ComboLivroEmp;
+    private javax.swing.JComboBox<String> ComboProfEmp;
     private javax.swing.JTextField EditoraCidade;
     private javax.swing.JTextField EditoraNome;
     private javax.swing.JTextField ISBNLivro;
+    private javax.swing.JLabel LivroEmprestimoL;
+    private javax.swing.JLabel ProfessorEmprestimoAluno;
     private javax.swing.JTextField ProfessorNome;
     private javax.swing.JTextField ProfessorTitulacao;
     private javax.swing.JTextField QuantidadeLivro;
@@ -761,6 +923,9 @@ public  class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

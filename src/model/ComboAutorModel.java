@@ -18,7 +18,7 @@ public class ComboAutorModel {
     public ComboAutorModel(int cod, String nome) {
         this.cod = cod;
         this.nome = nome;
-        this.sobrenome = sobrenome;
+        
     }
     
     
