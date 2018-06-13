@@ -20,12 +20,16 @@ import model.Autor;
  * @author Nicolas
  */
 public class AutorContoller {
+
     private Connection connection;
+
     public AutorContoller() {
         this.connection = new ConnectionFactory().getConnection();
     }
-    private final String Updated = "UPDATE autor SET cod_autor=?"+"nome=?"+"sobrenome=?"+"WHERE = cod_autor";
+    private final String Updated = "UPDATE autor SET cod_autor=?" + "nome=?" + "sobrenome=?" + "WHERE = cod_autor";
     private final String Insert = "INSERT INTO autor (nome,sobrenome) VALUES (?,?)";
+    private final String SELECT = "SELECT * FROM autor";
+    private final String DELETE = "DELETE FROM  autor WHERE codigo= ?";
     private PreparedStatement sql = null;
 
     public void AddAutor(Autor autor) {
@@ -47,7 +51,7 @@ public class AutorContoller {
 
     public List<Autor> getBusca() throws SQLException {
         ResultSet rs = null;
-        sql = connection.prepareStatement("SELECT * FROM autor");
+        sql = connection.prepareStatement(SELECT);
         rs = sql.executeQuery();
         List<Autor> Autor = new LinkedList<>();
         while (rs.next()) {
@@ -62,27 +66,30 @@ public class AutorContoller {
         return Autor;
     }
 
-    public void getDelete(String valor) throws SQLException {
-        sql = connection.prepareStatement("DELETE FROM  autor WHERE codigo= ?");
-        sql.setString(1, valor);
+    public void getDelete(int valor) throws SQLException {
+        sql = connection.prepareStatement(DELETE);
+        sql.setInt(1, valor);
         if (sql.executeUpdate() == 1) {
             JOptionPane.showMessageDialog(null, "Dado Deletado com sucesso!!!");
+            sql.close();
+            connection.close();
         } else {
             JOptionPane.showMessageDialog(null, "Nao foi possivel deletar o dado");
         }
+
     }
 
-    public void Updated(int codigo, String nome, String sobrenome) {    
-        try{
+    public void Updated(int codigo, String nome, String sobrenome) {
+        try {
             sql = connection.prepareStatement(Updated);
             sql.setInt(1, codigo);
-            sql.setString(2,nome);
-            sql.setString(3,sobrenome);
+            sql.setString(2, nome);
+            sql.setString(3, sobrenome);
             sql.execute();
             sql.close();
             connection.close();
-        
-        }catch(SQLException e){
+
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possivel alterar o dado");
         }
 

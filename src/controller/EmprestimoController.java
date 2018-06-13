@@ -30,7 +30,7 @@ import model.Emprestimo;
  */
 public class EmprestimoController{
     
-    private Connection connection;
+    private final Connection connection;
     public EmprestimoController() {
         this.connection = new ConnectionFactory().getConnection();
     }

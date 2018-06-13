@@ -23,7 +23,7 @@ import model.ComboProfessorModel;
  */
 public class ComboPouplation {
     
-    private Connection connection;
+    private final Connection connection;
     private final String Combo="SELECT cod_editora,nome From editora";
     private final String ComboAutor ="SELECT cod_autor, nome From autor";
     private final String ComboLivro = "SELECT cod_livro, titulo From livro";
@@ -38,7 +38,7 @@ public class ComboPouplation {
     
     
 public HashMap<String, Integer> populateCombo(){
-      HashMap<String, Integer> map = new HashMap<String, Integer>();
+      HashMap<String, Integer> map = new HashMap<>();
        try {
            st = connection.createStatement();
            rs = st.executeQuery(Combo);
@@ -56,7 +56,7 @@ public HashMap<String, Integer> populateCombo(){
    }
 
 public HashMap<String, Integer> populateComboAutor(){
-      HashMap<String, Integer> map = new HashMap<String, Integer>();
+      HashMap<String, Integer> map = new HashMap<>();
        try {
            st = connection.createStatement();
            rs = st.executeQuery(ComboAutor);
@@ -74,7 +74,7 @@ public HashMap<String, Integer> populateComboAutor(){
    }
 
 public HashMap<String, Integer> populateComboLivro(){
-      HashMap<String, Integer> map = new HashMap<String, Integer>();
+      HashMap<String, Integer> map = new HashMap<>();
        try {
            st = connection.createStatement();
            rs = st.executeQuery(ComboLivro);
@@ -91,7 +91,7 @@ public HashMap<String, Integer> populateComboLivro(){
        return map;
    }
 public HashMap<String, Integer> populateComboProfessor(){
-      HashMap<String, Integer> map = new HashMap<String, Integer>();
+      HashMap<String, Integer> map = new HashMap<>();
        try {
            st = connection.createStatement();
            rs = st.executeQuery(ComboProfessor);
@@ -110,7 +110,7 @@ public HashMap<String, Integer> populateComboProfessor(){
 
 
 public HashMap<String, Integer> populateComboAluno(){
-      HashMap<String, Integer> map = new HashMap<String, Integer>();
+      HashMap<String, Integer> map = new HashMap<>();
        try {
            st = connection.createStatement();
            rs = st.executeQuery(ComboAluno);

@@ -15,7 +15,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import model.Editora;
 
-
 /**
  *
  * @author Nicolas
@@ -27,8 +26,8 @@ public class EditoraController {
     private ResultSet rs = null;
     private final String INSERT = "INSERT INTO Editora (nome,cidade) VALUES (?,?)";
     private final String SELECT = "SELECT * FROM editora";
-    private final String DELETE = "DELETE FROM  livro WHERE cod_livro= ?";
-    private final String Updated = "UPDATE editora SET "+"nome=?"+"cidade=?"+"WHERE = cod_editora";
+    private final String DELETE = "DELETE FROM  editora WHERE cod_editora= ?";
+    private final String Updated = "UPDATE editora SET " + "nome=?" + "cidade=?" + "WHERE = cod_editora";
 
     public EditoraController() {
         this.connection = new ConnectionFactory().getConnection();
@@ -66,9 +65,9 @@ public class EditoraController {
         return EditoraL;
     }
 
-    public void getDelete(String valor) throws SQLException {
+    public void getDelete(int valor) throws SQLException {
         sql = connection.prepareStatement(DELETE);
-        sql.setString(1, valor);
+        sql.setInt(1, valor);
         if (sql.executeUpdate() == 1) {
             JOptionPane.showMessageDialog(null, "Dado Deletado com sucesso!!!");
         } else {
@@ -76,18 +75,18 @@ public class EditoraController {
         }
 
     }
-    
-    public void Updated(int codigo, String nome, String cidade) {    
-        try{
+
+    public void Updated(int codigo, String nome, String cidade) {
+        try {
             sql = connection.prepareStatement(Updated);
             sql.setString(1, nome);
-            sql.setString(2,cidade);
-            sql.setInt(3,codigo);
+            sql.setString(2, cidade);
+            sql.setInt(3, codigo);
             sql.execute();
             sql.close();
             connection.close();
-        
-        }catch(SQLException e){
+
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possivel alterar o dado");
         }
 

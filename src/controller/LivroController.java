@@ -26,10 +26,10 @@ public class LivroController {
     public LivroController() {
         this.connection = new ConnectionFactory().getConnection();
     }
-    
+
     private final String INSERT = "INSERT INTO livro(titulo,isbn,quantidade,fk_editora,fk_autor) VALUES(?,?,?,?,?)";
     private final String SELECT = "SELECT * FROM LIVRO";
-    private final String Updated = "UPDATE livro SET " + "titulo=?" + "isbn=?"+ "quantidade=?" + "fk_editora=?" + "fk_autor=?"+  "WHERE = cod_livro";
+    private final String Updated = "UPDATE livro SET " + "titulo=?" + "isbn=?" + "quantidade=?" + "fk_editora=?" + "fk_autor=?" + "WHERE = cod_livro";
     private final String DELETE = "DELETE FROM  livro WHERE cod_livro= ?";
     private PreparedStatement sql = null;
 
@@ -74,9 +74,9 @@ public class LivroController {
         return Livro;
     }
 
-    public void getDelete(String valor) throws SQLException {
-        sql = connection.prepareStatement("DELETE FROM  livro WHERE cod_livro= ?");
-        sql.setString(1, valor);
+    public void getDelete(int valor) throws SQLException {
+        sql = connection.prepareStatement(DELETE);
+        sql.setInt(1, valor);
         if (sql.executeUpdate() == 1) {
             JOptionPane.showMessageDialog(null, "Dado Deletado com sucesso!!!");
         } else {
@@ -85,15 +85,15 @@ public class LivroController {
 
     }
 
-    public void Updated(int codigo, String titulo, String isbn, int quantidade, int fk_autor,int fk_editora) {
+    public void Updated(int codigo, String titulo, String isbn, int quantidade, int fk_autor, int fk_editora) {
         try {
             sql = connection.prepareStatement(Updated);
             sql.setString(1, titulo);
             sql.setString(2, isbn);
-            sql.setInt(3,quantidade);
-            sql.setInt(4,fk_editora);
-            sql.setInt(5,fk_autor);
-            sql.setInt(6,codigo);
+            sql.setInt(3, quantidade);
+            sql.setInt(4, fk_editora);
+            sql.setInt(5, fk_autor);
+            sql.setInt(6, codigo);
             sql.execute();
             sql.close();
             connection.close();
