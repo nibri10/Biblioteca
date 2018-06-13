@@ -26,8 +26,11 @@ public class LivroController {
     public LivroController() {
         this.connection = new ConnectionFactory().getConnection();
     }
-    private final String INSERT="INSERT INTO livro(titulo,isbn,quantidade,fk_editora,fk_autor) VALUES(?,?,?,?,?)";
-    private final String SELECT="SELECT * FROM PRODUTO";
+    
+    private final String INSERT = "INSERT INTO livro(titulo,isbn,quantidade,fk_editora,fk_autor) VALUES(?,?,?,?,?)";
+    private final String SELECT = "SELECT * FROM LIVRO";
+    private final String Updated = "UPDATE livro SET " + "titulo=?" + "isbn=?"+ "quantidade=?" + "fk_editora=?" + "fk_autor=?"+  "WHERE = cod_livro";
+    private final String DELETE = "DELETE FROM  livro WHERE cod_livro= ?";
     private PreparedStatement sql = null;
 
     public void addLivro(Livro livro) {
@@ -36,13 +39,13 @@ public class LivroController {
             int autor = livro.getAutor();
             String isbn = livro.getISBN();
             int editora = livro.getEditora();
-            int quantidade = livro.getQuantidade(); 
-            PreparedStatement stmt =  connection.prepareStatement(INSERT);
+            int quantidade = livro.getQuantidade();
+            PreparedStatement stmt = connection.prepareStatement(INSERT);
             stmt.setString(1, titulo);
             stmt.setString(2, isbn);
-            stmt.setInt(3,quantidade);
-            stmt.setInt(4,editora);
-            stmt.setInt(5,autor);
+            stmt.setInt(3, quantidade);
+            stmt.setInt(4, editora);
+            stmt.setInt(5, autor);
             stmt.execute();
             stmt.close();
             connection.close();
@@ -52,6 +55,7 @@ public class LivroController {
 
         }
     }
+
     public List<Livro> getBusca() throws SQLException {
         PreparedStatement sql = null;
         ResultSet rs = null;
@@ -77,6 +81,25 @@ public class LivroController {
             JOptionPane.showMessageDialog(null, "Dado Deletado com sucesso!!!");
         } else {
             JOptionPane.showMessageDialog(null, "Nao foi possivel deletar o dado");
+        }
+
+    }
+
+    public void Updated(int codigo, String titulo, String isbn, int quantidade, int fk_autor,int fk_editora) {
+        try {
+            sql = connection.prepareStatement(Updated);
+            sql.setString(1, titulo);
+            sql.setString(2, isbn);
+            sql.setInt(3,quantidade);
+            sql.setInt(4,fk_editora);
+            sql.setInt(5,fk_autor);
+            sql.setInt(6,codigo);
+            sql.execute();
+            sql.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Não foi possivel alterar o dado");
         }
 
     }

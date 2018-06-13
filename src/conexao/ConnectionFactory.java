@@ -5,9 +5,6 @@
  */
 package conexao;
 
-
- 
-
 // faz as importações de classes necessárias para o funcionamento do programa 
 import java.sql.Connection; 
 // conexão SQL para Java 
@@ -16,9 +13,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException; 
 // classe para tratamento de exceções 
 public class ConnectionFactory {
-       private final String driver = "jdbc:mysql://localhost/emprestimo";
+    
+       private final String driver = "jdbc:mysql://127.0.0.1:3306/emprestimo";
        private final String user = "root";
-       private final String password = "1234";
+       private final String password = "123456";
     
      public Connection getConnection() {
 		 try {
@@ -30,3 +28,4 @@ public class ConnectionFactory {
      }
      
 }
+

@@ -28,6 +28,7 @@ public class EditoraController {
     private final String INSERT = "INSERT INTO Editora (nome,cidade) VALUES (?,?)";
     private final String SELECT = "SELECT * FROM editora";
     private final String DELETE = "DELETE FROM  livro WHERE cod_livro= ?";
+    private final String Updated = "UPDATE editora SET "+"nome=?"+"cidade=?"+"WHERE = cod_editora";
 
     public EditoraController() {
         this.connection = new ConnectionFactory().getConnection();
@@ -72,6 +73,22 @@ public class EditoraController {
             JOptionPane.showMessageDialog(null, "Dado Deletado com sucesso!!!");
         } else {
             JOptionPane.showMessageDialog(null, "Nao foi possivel deletar o dado");
+        }
+
+    }
+    
+    public void Updated(int codigo, String nome, String cidade) {    
+        try{
+            sql = connection.prepareStatement(Updated);
+            sql.setString(1, nome);
+            sql.setString(2,cidade);
+            sql.setInt(3,codigo);
+            sql.execute();
+            sql.close();
+            connection.close();
+        
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Não foi possivel alterar o dado");
         }
 
     }

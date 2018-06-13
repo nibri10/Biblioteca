@@ -25,7 +25,7 @@ public class AlunoController {
     private final String SELECT = "SELECT * FROM ALUNOS";
     private final String INSERT = "INSERT INTO aluno (nome,sobrenome) VALUES (?,?)";
     private final String DELETE = "DELETE FROM  produto WHERE cod_aluno= ?";
-    private final String Updated = "UPDATE aluno SET cod_aluno=?"+"nome=?"+"sobrenome=?"+"WHERE = cod_aluno";
+    private final String Updated = "UPDATE aluno SET "+"nome=?"+"sobrenome=?"+"WHERE = cod_aluno";
     private PreparedStatement sql = null;
     private ResultSet rs = null;
     private final Connection connection;
@@ -35,6 +35,7 @@ public class AlunoController {
     }
     public void AddAluno(Aluno aluno) {
         try {
+            
             String nome = aluno.getNome();
             String sobrenome = aluno.getSobrenome();
             PreparedStatement stmt = connection.prepareStatement(INSERT);
@@ -69,9 +70,9 @@ public class AlunoController {
      public void Updated(int codigo, String nome, String sobrenome) {    
         try{
             sql = connection.prepareStatement(Updated);
-            sql.setInt(1, codigo);
-            sql.setString(2,nome);
-            sql.setString(3,sobrenome);
+            sql.setString(1, nome);
+            sql.setString(2,sobrenome);
+            sql.setInt(3,codigo);
             sql.execute();
             sql.close();
             connection.close();

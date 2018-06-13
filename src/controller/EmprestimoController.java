@@ -28,7 +28,7 @@ import model.Emprestimo;
  *
  * @author Nicolas
  */
-public class EmprestimoController {
+public class EmprestimoController{
     
     private Connection connection;
     public EmprestimoController() {
