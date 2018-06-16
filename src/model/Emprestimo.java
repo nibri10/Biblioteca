@@ -18,7 +18,10 @@ public class Emprestimo {
     private int Verifica;
     private int CodigoProfesor;
     private Date data_emprestimo;
-    private Date data_devolucao;
+    private String cod_dev;
+    private String nome;
+    private String titulo;
+    private String professor;
 
     public Emprestimo(){}
     
@@ -78,17 +81,46 @@ public class Emprestimo {
         this.CodigoProfesor = CodigoProfesor;
     }
 
-    public Date getData_devolucao() {
-        return data_devolucao;
+  
+
+    public String getNome() {
+        return nome;
     }
 
-    public void setData_devolucao(Date data_devolucao) {
-        this.data_devolucao = data_devolucao;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
-    
-    
-    
-    
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(String professor) {
+        this.professor = professor;
+    }
+
+    public String getCod_dev() {
+        return cod_dev;
+    }
+
+    public void setCod_dev(String cod_dev) {
+        this.cod_dev = cod_dev;
+    }
+
+    @Override
+    public String toString() {
+        return "Emprestimo{" + "codEmprestimo=" + codEmprestimo + ", CodlivroEmprestimo=" + CodlivroEmprestimo + ", CodigoAluno=" + CodigoAluno + ", Verifica=" + Verifica + ", CodigoProfesor=" + CodigoProfesor + ", data_emprestimo=" + data_emprestimo + ", cod_dev=" + cod_dev + ", nome=" + nome + ", titulo=" + titulo + ", professor=" + professor + '}';
+    }
+
+  
     
     
     

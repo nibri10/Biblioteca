@@ -24,6 +24,7 @@ import model.Emprestimo;
 
 
 
+
 /**
  *
  * @author Nicolas
@@ -37,7 +38,7 @@ public class EmprestimoController{
     
     private final String Updated = "UPDATE autor SET cod_autor=?"+"nome=?"+"sobrenome=?"+"WHERE = cod_autor";
     private final String Insert = "INSERT INTO emprestimo(fk_aluno,fk_professor,fk_livro,data_emprestimo,verifica) values(?,?,?,?,?)";
-    private final String Data = "SELECT NOW";
+   
     private PreparedStatement sql = null;
 
     public void AddEmprestimo(Emprestimo emprestimo) {
@@ -57,10 +58,14 @@ public class EmprestimoController{
             connection.close();
             JOptionPane.showMessageDialog(null, "Dados Salvos!");
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Não foi possivel salvar os dados!");
+            JOptionPane.showMessageDialog(null, "Livro já Emprestado!!!");
         }
 
     }
+    
+    
+    
+    
     
    
     
