@@ -29,7 +29,7 @@ public class AutorContoller {
     private final String Updated = "UPDATE autor SET cod_autor=?" + "nome=?" + "sobrenome=?" + "WHERE = cod_autor";
     private final String Insert = "INSERT INTO autor (nome,sobrenome) VALUES (?,?)";
     private final String SELECT = "SELECT * FROM autor";
-    private final String DELETE = "DELETE FROM  autor WHERE codigo= ?";
+    private final String DELETE = "DELETE FROM  autor WHERE cod_autor=?";
     private PreparedStatement sql = null;
 
     public void AddAutor(Autor autor) {
