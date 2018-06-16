@@ -26,9 +26,8 @@ public class AutorContoller {
     public AutorContoller() {
         this.connection = new ConnectionFactory().getConnection();
     }
-    private final String Updated = "UPDATE autor SET cod_autor=?" + "nome=?" + "sobrenome=?" + "WHERE = cod_autor";
+    private final String Updated = "UPDATE autor SET cod_autor=?,nome=?,sobrenome=? WHERE cod_autor=?";
     private final String Insert = "INSERT INTO autor (nome,sobrenome) VALUES (?,?)";
-    private final String SELECT = "SELECT * FROM autor";
     private final String DELETE = "DELETE FROM  autor WHERE cod_autor=?";
     private PreparedStatement sql = null;
 
@@ -49,22 +48,7 @@ public class AutorContoller {
 
     }
 
-    public List<Autor> getBusca() throws SQLException {
-        ResultSet rs = null;
-        sql = connection.prepareStatement(SELECT);
-        rs = sql.executeQuery();
-        List<Autor> Autor = new LinkedList<>();
-        while (rs.next()) {
-            Autor autor = new Autor();
-            autor.setCodigo(Integer.parseInt(rs.getString("cod_autor")));
-            autor.setNome(rs.getString("nome"));
-            autor.setSobrenome(rs.getString("sobrenome"));
-            Autor.add(autor);
-        }
-        rs.close();
-        sql.close();
-        return Autor;
-    }
+   
 
     public void getDelete(int valor) throws SQLException {
         sql = connection.prepareStatement(DELETE);
@@ -85,9 +69,11 @@ public class AutorContoller {
             sql.setInt(1, codigo);
             sql.setString(2, nome);
             sql.setString(3, sobrenome);
+            sql.setInt(4, codigo);
             sql.execute();
             sql.close();
             connection.close();
+            JOptionPane.showMessageDialog(null, "Dados Alterados!");
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possivel alterar o dado");

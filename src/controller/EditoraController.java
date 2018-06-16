@@ -25,9 +25,8 @@ public class EditoraController {
     private PreparedStatement sql = null;
     private ResultSet rs = null;
     private final String INSERT = "INSERT INTO Editora (nome,cidade) VALUES (?,?)";
-    private final String SELECT = "SELECT * FROM editora";
     private final String DELETE = "DELETE FROM  editora WHERE cod_editora= ?";
-    private final String Updated = "UPDATE editora SET " + "nome=?" + "cidade=?" + "WHERE = cod_editora";
+    private final String Updated = "UPDATE editora SET cod_editora=?, nome=?, cidade=? WHERE cod_editora = ?";
 
     public EditoraController() {
         this.connection = new ConnectionFactory().getConnection();
@@ -49,21 +48,7 @@ public class EditoraController {
         }
     }
 
-    public List<Editora> getBusca() throws SQLException {
-        sql = connection.prepareStatement(SELECT);
-        rs = sql.executeQuery();
-        List<Editora> EditoraL = new LinkedList<>();
-        while (rs.next()) {
-            Editora editora = new Editora();
-            editora.setCodigo(Integer.parseInt(rs.getString("codigo")));
-            editora.setNome(rs.getString("nome"));
-            editora.setCidade(rs.getString("cidade"));
-            EditoraL.add(editora);
-        }
-        rs.close();
-        sql.close();
-        return EditoraL;
-    }
+   
 
     public void getDelete(int valor) throws SQLException {
         sql = connection.prepareStatement(DELETE);
@@ -79,12 +64,14 @@ public class EditoraController {
     public void Updated(int codigo, String nome, String cidade) {
         try {
             sql = connection.prepareStatement(Updated);
-            sql.setString(1, nome);
-            sql.setString(2, cidade);
-            sql.setInt(3, codigo);
+            sql.setInt(1, codigo);
+            sql.setString(2, nome);
+            sql.setString(3, cidade);
+            sql.setInt(4, codigo);
             sql.execute();
             sql.close();
             connection.close();
+            JOptionPane.showMessageDialog(null, "Dados Alterados com sucesso!");
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possivel alterar o dado");

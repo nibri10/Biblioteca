@@ -282,6 +282,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel48 = new javax.swing.JLabel();
         LabelApagarAutor = new javax.swing.JLabel();
         ApagarAutor = new javax.swing.JButton();
+        jPanel26 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
 
@@ -1225,14 +1226,12 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        ComboAlunoEmp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0" }));
         ComboAlunoEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboAlunoEmpActionPerformed(evt);
             }
         });
 
-        ComboProfEmp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0" }));
         ComboProfEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboProfEmpActionPerformed(evt);
@@ -1575,6 +1574,19 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Deleção", jPanel15);
 
+        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
+        jPanel26.setLayout(jPanel26Layout);
+        jPanel26Layout.setHorizontalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 577, Short.MAX_VALUE)
+        );
+        jPanel26Layout.setVerticalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 556, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Devolução", jPanel26);
+
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 204));
 
         jMenu1.setText("Fechar Sistema");
@@ -1612,6 +1624,7 @@ public class Principal extends javax.swing.JFrame {
         CadAluno.setSobrenome(AlunoSobrenome.getText());
         AlunoController AddAluno = new AlunoController();
         AddAluno.AddAluno(CadAluno);
+        comboAluno();
     }//GEN-LAST:event_BtnAlunoMouseClicked
 
     private void BtnProfessorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnProfessorMouseClicked
@@ -1623,6 +1636,7 @@ public class Principal extends javax.swing.JFrame {
         CadProf.setTitulacao(ProfessorTitulacao.getText());
         ProfessorController AddProf = new ProfessorController();
         AddProf.AddProfessor(CadProf);
+        comboProfessor();
     }//GEN-LAST:event_BtnProfessorMouseClicked
 
     private void BtnEditoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEditoraMouseClicked
@@ -1634,6 +1648,7 @@ public class Principal extends javax.swing.JFrame {
         CadEdit.setCidade(EditoraCidade.getText());
         EditoraController AddEditora = new EditoraController();
         AddEditora.AddEditora(CadEdit);
+        comboEditora();
 
     }//GEN-LAST:event_BtnEditoraMouseClicked
 
@@ -1655,6 +1670,7 @@ public class Principal extends javax.swing.JFrame {
         newLivro.setQuantidade(Integer.parseInt(QuantidadeLivro.getText()));
         LivroController AddLivro = new LivroController();
         AddLivro.addLivro(newLivro);
+        comboLivro();
 
     }//GEN-LAST:event_CadastrarLivrosMouseClicked
 
@@ -1739,6 +1755,7 @@ public class Principal extends javax.swing.JFrame {
         String Sobrenome = (AttNovoSobrenomeAluno.getText());
         AlunoController update = new AlunoController();
         update.Updated(codigo, Nome, Sobrenome);
+        comboAluno();
     }//GEN-LAST:event_AttAlunoMouseClicked
 
     private void AttProfessoresBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AttProfessoresBtnMouseClicked
@@ -1747,6 +1764,7 @@ public class Principal extends javax.swing.JFrame {
         String Titulacao = (AttNovaTitulacaoProf.getText());
         ProfessorController updateProf = new ProfessorController();
         updateProf.Updated(codigo, Nome, Titulacao);
+        comboProfessor();
     }//GEN-LAST:event_AttProfessoresBtnMouseClicked
 
     private void AttEditoraBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AttEditoraBtnMouseClicked
@@ -1755,6 +1773,7 @@ public class Principal extends javax.swing.JFrame {
         String cidade = (AttNovoNomeCidadeEditora.getText());
         EditoraController updateEditora = new EditoraController();
         updateEditora.Updated(codigo, Nome, cidade);
+        comboEditora();
     }//GEN-LAST:event_AttEditoraBtnMouseClicked
 
     private void AttLivroBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AttLivroBtnMouseClicked
@@ -1766,6 +1785,7 @@ public class Principal extends javax.swing.JFrame {
         int autor = (Integer.parseInt(LabelAutorLivroAtt.getText()));
         LivroController UpdatedLivro = new LivroController();
         UpdatedLivro.Updated(codigo, titulo, isbn, quant, autor, editora);
+        comboLivro();
     }//GEN-LAST:event_AttLivroBtnMouseClicked
 
     private void ComboAttLivroAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboAttLivroAutorActionPerformed
@@ -1786,6 +1806,7 @@ public class Principal extends javax.swing.JFrame {
           String sobrenomeAutor = AttNovoSobrenomeAutor.getText();
           AutorContoller Update = new AutorContoller();
           Update.Updated(codigo, nome, sobrenomeAutor);
+          comboAutor();
           
     }//GEN-LAST:event_AttAutorBtnMouseClicked
 
@@ -1802,6 +1823,7 @@ public class Principal extends javax.swing.JFrame {
         create.setSobrenome(AutorSobrenome.getText());
         AutorContoller AddAutor = new AutorContoller();
         AddAutor.AddAutor(create);
+        comboAutor();
     }//GEN-LAST:event_BtnAutorMouseClicked
 
     private void ComboApagarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboApagarAutorActionPerformed
@@ -1816,6 +1838,7 @@ public class Principal extends javax.swing.JFrame {
        AutorContoller Delete = new AutorContoller();
         try {
             Delete.getDelete(destroy);
+            comboAutor();
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null,"NÃO FOI POSSIVEL APAGAR O REGISTRO");
         }
@@ -1833,6 +1856,7 @@ public class Principal extends javax.swing.JFrame {
         LivroController DELETE = new LivroController();
         try {
             DELETE.getDelete(destroy);
+            comboLivro();
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null,"NÃO FOI POSSIVEL APAGAR O REGISTRO");
         }
@@ -1849,6 +1873,7 @@ public class Principal extends javax.swing.JFrame {
         EditoraController DELETE = new EditoraController();
         try {
             DELETE.getDelete(destroy);
+            comboEditora();
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null,"NÃO FOI POSSIVEL APAGAR O REGISTRO");
         }
@@ -1865,6 +1890,7 @@ public class Principal extends javax.swing.JFrame {
         ProfessorController DELETE = new ProfessorController();
         try {
             DELETE.getDelete(destroy);
+            comboProfessor();
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null,"NÃO FOI POSSIVEL APAGAR O REGISTRO");
         }
@@ -1881,6 +1907,7 @@ public class Principal extends javax.swing.JFrame {
         AlunoController DELETE = new AlunoController();
         try {
             DELETE.getDelete(destroy);
+            comboAluno();
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null,"NÃO FOI POSSIVEL APAGAR O REGISTRO");
         }
@@ -2067,6 +2094,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;

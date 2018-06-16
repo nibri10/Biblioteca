@@ -29,7 +29,7 @@ public class LivroController {
 
     private final String INSERT = "INSERT INTO livro(titulo,isbn,quantidade,fk_editora,fk_autor) VALUES(?,?,?,?,?)";
     private final String SELECT = "SELECT * FROM LIVRO";
-    private final String Updated = "UPDATE livro SET " + "titulo=?" + "isbn=?" + "quantidade=?" + "fk_editora=?" + "fk_autor=?" + "WHERE = cod_livro";
+    private final String Updated = "UPDATE livro SET cod_livro=?,titulo=?,isbn=?,quantidade=?,fk_editora=?,fk_autor=? WHERE cod_livro=?";
     private final String DELETE = "DELETE FROM  livro WHERE cod_livro= ?";
     private PreparedStatement sql = null;
 
@@ -88,15 +88,17 @@ public class LivroController {
     public void Updated(int codigo, String titulo, String isbn, int quantidade, int fk_autor, int fk_editora) {
         try {
             sql = connection.prepareStatement(Updated);
-            sql.setString(1, titulo);
-            sql.setString(2, isbn);
-            sql.setInt(3, quantidade);
-            sql.setInt(4, fk_editora);
-            sql.setInt(5, fk_autor);
-            sql.setInt(6, codigo);
+            sql.setInt(1, codigo);
+            sql.setString(2, titulo);
+            sql.setString(3, isbn);
+            sql.setInt(4, quantidade);
+            sql.setInt(5, fk_editora);
+            sql.setInt(6, fk_autor);
+            sql.setInt(7, codigo);
             sql.execute();
             sql.close();
             connection.close();
+            JOptionPane.showMessageDialog(null, "Dados Alterados!");
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possivel alterar o dado");

@@ -22,7 +22,7 @@ public class ProfessorController {
     private Connection connection;
     private final String INSERT = "INSERT INTO professor (nome, titulacao) VALUES (?,?)";
     private final String DELETE = "DELETE FROM  professor WHERE cod_prof= ?";
-    private final String Updated = "UPDATE professor SET " + "nome=?" + "titulacao=?" + "WHERE = cod_prof";
+    private final String Updated = "UPDATE professor SET cod_prof=?,nome=?,titulacao=? WHERE cod_prof=?";
     private PreparedStatement sql = null;
     private ResultSet rs = null;
 
@@ -58,7 +58,7 @@ public class ProfessorController {
             sql.execute();
             sql.close();
             connection.close();
-
+            JOptionPane.showMessageDialog(null, "Dados Alterados com sucesso!");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possivel alterar o dado");
         }

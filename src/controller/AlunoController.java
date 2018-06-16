@@ -22,10 +22,9 @@ import model.Livro;
  */
 public class AlunoController {
 
-    private final String SELECT = "SELECT * FROM ALUNOS";
     private final String INSERT = "INSERT INTO aluno (nome,sobrenome) VALUES (?,?)";
     private final String DELETE = "DELETE FROM  aluno WHERE cod_aluno= ?";
-    private final String Updated = "UPDATE aluno SET " + "nome=?" + "sobrenome=?" + "WHERE = cod_aluno";
+    private final String Updated = "UPDATE aluno SET cod_aluno=?,nome=?,sobrenome=? WHERE cod_aluno=?";
     private PreparedStatement sql = null;
     private ResultSet rs = null;
     private final Connection connection;
@@ -52,34 +51,18 @@ public class AlunoController {
 
     }
 
-    public List<Aluno> getBusca() throws SQLException {
-        sql = connection.prepareStatement(SELECT);
-        rs = sql.executeQuery();
-        List<Aluno> Aluno = new LinkedList<>();
-        while (rs.next()) {
-            Aluno aluno = new Aluno();
-
-            aluno.setCodigo(Integer.parseInt(rs.getString("codigo")));
-            aluno.setNome(rs.getString("nome"));
-            aluno.setSobrenome(rs.getString("sobrenome"));
-            Aluno.add(aluno);
-        }
-
-        rs.close();
-        sql.close();
-        return Aluno;
-    }
-
+   
     public void Updated(int codigo, String nome, String sobrenome) {
         try {
             sql = connection.prepareStatement(Updated);
-            sql.setString(1, nome);
-            sql.setString(2, sobrenome);
-            sql.setInt(3, codigo);
+             sql.setInt(1, codigo);
+            sql.setString(2, nome);
+            sql.setString(3, sobrenome);
+            sql.setInt(4, codigo);
             sql.execute();
             sql.close();
             connection.close();
-
+             JOptionPane.showMessageDialog(null, "Dados Salvos!");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Não foi possivel alterar o dado");
         }
